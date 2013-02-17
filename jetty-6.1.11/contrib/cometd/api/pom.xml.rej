@@ -1,0 +1,17 @@
+***************
+*** 2,8 ****
+    <parent>
+      <artifactId>cometd</artifactId>
+      <groupId>org.mortbay.jetty</groupId>
+-     <version>6.1-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+--- 2,8 ----
+    <parent>
+      <artifactId>cometd</artifactId>
+      <groupId>org.mortbay.jetty</groupId>
++     <version>6.1.11</version>
+      <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
