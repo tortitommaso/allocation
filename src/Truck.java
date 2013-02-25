@@ -1,20 +1,22 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 
 public class Truck {
 
 	private String id;
+	private int litersToLoad;
+	private String status;
+	private PetrolPump petrolPump;
 
 	public Truck(String id) {
 		this.id = id;
+		this.status = "start";
 	}
 
 	public String status() {
-		List<String> status = Arrays.asList("start", "inprogress", "exit");
-		Collections.shuffle(status);
-		return status.iterator().next();
+		int actualLoaded = petrolPump.getLitersAtTime() * Clock.tick;
+		if ("inprogress".equals(status) && actualLoaded >= litersToLoad) {
+			status = "exit";
+		}
+		return status;
 	}
 
 	public boolean isNumber(String trucknumber) {
@@ -22,7 +24,17 @@ public class Truck {
 	}
 
 	public String asJson() {
-		return "{ \"trucknumber\": \"" + id + "\", \"status\": \""+status()+"\" }";
+		return "{ \"trucknumber\": \"" + id + "\", \"status\": \"" + status()
+				+ "\" }";
+	}
+
+	public void simulateLitersToLoad(int litersToLoad) {
+		this.litersToLoad = litersToLoad;
+	}
+
+	public void moveTo(PetrolPump petrolPump) {
+		this.petrolPump = petrolPump;
+		this.status = "inprogress";
 	}
 
 }
