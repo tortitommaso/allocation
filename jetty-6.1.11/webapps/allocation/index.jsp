@@ -5,16 +5,13 @@
         type="text/javascript"></script>
 <script language="Javascript"> 
 function timeout_trigger() {
-	
-	for (var i = 1; i < 4; i++) {
-		var urlToCall = '/allocation/servlet';
-		$.getJSON(urlToCall, function(data) { 
-			for (var i in data) {
-			   var truck = data[i];
-			   move_truck(truck.trucknumber, truck.status);
-		    }
-		});
-	}
+	var urlToCall = '/allocation/servlet';
+	$.getJSON(urlToCall, function(data) { 
+		for (var i in data) {
+		  var truck = data[i];
+		  move_truck(truck.trucknumber, truck.status);
+	    }
+    });
 	timeout_init(); 
 }
 
@@ -53,14 +50,19 @@ $(document).ready(function(){
 </td>
 </tr>
 </table>
-<div class="truck1" style="position:relative;">
-<img  src="http://png-5.findicons.com/files/icons/978/cem_transport/128/truck.png" />
-</div>
-<div  class="truck2" style="position:relative;">
-<img src="http://findicons.com/files/icons/2527/hand_drawn_e_commerce/128/truck.png" />
-</div>
-<div class="truck3" style="position:relative;">
-<img src="http://findicons.com/files/icons/914/cemagraphics/128/tanker_truck.png" />
-</div>
+<%
+for ( int i = 0; i < 4; i++ ) {
+%>
+    <div class="truck<%=i%>" style="position:relative;">
+	<% if (i % 3 == 0) { %>
+	<img src="http://png-5.findicons.com/files/icons/978/cem_transport/128/truck.png" />
+	<% } else if (i % 2 == 0) { %>
+	<img src="http://findicons.com/files/icons/2527/hand_drawn_e_commerce/128/truck.png"  />
+	<% } else { %>
+	<img src="http://findicons.com/files/icons/914/cemagraphics/128/tanker_truck.png" />
+	<% } %>
+	</div>
+<% } %>
+
 </body>
 </html>

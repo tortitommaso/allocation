@@ -2,14 +2,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class TrackList {
+public class TruckList {
+	public static final int HOW_MANY = 4;
 	private static List<Truck> truckList;
 
 	public static void init() {
 		truckList = new ArrayList<Truck>();
-		truckList.add(new Truck("1"));
-		truckList.add(new Truck("2"));
-		truckList.add(new Truck("3"));
+		for (int i = 0; i < HOW_MANY; i++) {
+			truckList.add(new Truck(String.valueOf(i)));
+		}
 	}
 
 	public static Truck find(String trucknumber) {
