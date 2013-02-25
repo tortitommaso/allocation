@@ -1,9 +1,9 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-
 public class TrackList {
-	private static List<Truck> truckList ;
+	private static List<Truck> truckList;
 
 	public static void init() {
 		truckList = new ArrayList<Truck>();
@@ -18,6 +18,17 @@ public class TrackList {
 				return truck;
 		}
 		return null;
+	}
+
+	public static String asJson() {
+		String result = "[";
+		for (Iterator iterator = truckList.iterator(); iterator.hasNext();) {
+			Truck truck = (Truck) iterator.next();
+			result += truck.asJson() ;
+			if (iterator.hasNext()) result += ",\n";
+		}
+		result += "]";
+		return result;
 	}
 
 }

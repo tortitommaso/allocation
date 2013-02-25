@@ -21,4 +21,8 @@ public class Truck {
 		return id.equals(trucknumber);
 	}
 
+	public String asJson() {
+		return "{ \"trucknumber\": \"" + id + "\", \"status\": \""+status()+"\" }";
+	}
+
 }

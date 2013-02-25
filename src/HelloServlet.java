@@ -12,11 +12,11 @@ public class HelloServlet extends HttpServlet
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException
     {
-        String trucknumber = req.getParameter("trucknumber");
-        Truck truck = TrackList.find(trucknumber);
         PrintWriter out = resp.getWriter();
-        resp.setContentType("text/plain");
-        out.println(truck.status());
+        resp.setContentType("application/json");
+        String json = TrackList.asJson();
+        System.out.println(json);
+		out.println(json);
     }
 
    

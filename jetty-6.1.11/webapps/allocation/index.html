@@ -7,19 +7,25 @@
 function timeout_trigger() {
 	
 	for (var i = 1; i < 4; i++) {
-		var urlToCall = '/allocation/servlet?trucknumber=' + i;
-		$.get(urlToCall, {}, function(data) { move_truck(data); }, "text");
+		var urlToCall = '/allocation/servlet';
+		$.getJSON(urlToCall, function(data) { 
+			for (var i in data) {
+			   var truck = data[i];
+			   move_truck(truck.trucknumber, truck.status);
+		    }
+		});
 	}
 	timeout_init(); 
 }
 
-function move_truck(data) {
-	if ($.trim(data)=='inprogress') {
-	       $("div").animate({left:'170px'});
-    } else if ($.trim(data)=='exit') {
-	       $("div").animate({left:'320px'});
-    } else if ($.trim(data)=='start') {
-		   $("div").animate({left:'0px'});
+function move_truck(truckid, status) {
+	var classToMove = ".truck" + truckid;
+	if ($.trim(status)=='inprogress') {
+	       $(classToMove).animate({left:'170px'});
+    } else if ($.trim(status)=='exit') {
+	       $(classToMove).animate({left:'320px'});
+    } else if ($.trim(status)=='start') {
+		   $(classToMove).animate({left:'0px'});
     }
 }
 
